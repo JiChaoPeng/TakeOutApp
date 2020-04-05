@@ -1,6 +1,7 @@
 package com.android.takeoutapp.net;
 
 
+import com.android.takeoutapp.MainActivity;
 import com.android.takeoutapp.bean.BaseResultModel;
 import com.android.takeoutapp.bean.ResultBean;
 import com.android.takeoutapp.model.RoomDetailModel;
@@ -25,7 +26,8 @@ public interface NetWorkServices {
             @Field("level") int level,
             @Field("age") int age,
             @Field("imageUrl") String imageUrl,
-            @Field("address") String address);
+            @Field("address") String address,
+            @Field("appIndex") int appIndex);
 
 //    @FormUrlEncoded
 //    @POST("order/v1/signIn")

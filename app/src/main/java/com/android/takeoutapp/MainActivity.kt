@@ -3,7 +3,6 @@ package com.android.takeoutapp
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -11,13 +10,13 @@ import com.android.frameworktool.base.BaseActivity
 import com.android.takeoutapp.fragment.MineFragment
 import com.android.takeoutapp.fragment.OrderFragment
 import com.android.takeoutapp.fragment.ShoppingFragment
-import com.android.takeoutapp.model.RoomDetailModel
-import com.android.takeoutapp.model.RoomListModel
 import com.android.takeoutapp.util.DataBeanUtil
 import com.tencent.mmkv.MMKV
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
+
+
     private var pagerList: List<Fragment>? = null
     private var pagerIndex: Int = -1
     override fun getContentView(): Int {

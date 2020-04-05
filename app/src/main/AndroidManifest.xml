@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.AddRoomByLocalActivity"></activity>
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.AddRoomByLocalActivity" />
         <activity
             android:name=".activity.AddRoomActivity"
             android:screenOrientation="nosensor" />

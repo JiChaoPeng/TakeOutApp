@@ -11,6 +11,7 @@ import com.android.takeoutapp.bean.BaseResultModel
 import com.android.takeoutapp.bean.ResultBean
 import com.android.takeoutapp.model.RoomDetailModel
 import com.android.takeoutapp.net.NetWork.Companion.loginServices
+import com.android.takeoutapp.util.AppIndex
 import com.android.takeoutapp.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_add_room.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -72,7 +73,7 @@ class AddRoomActivity : BaseActivity() {
     private fun addRoom() {
         loginServices?.networkServices?.addRoom(
             roomName.text.toString(), "2", roomLevel.text.toString().toInt(),
-            roomAge.text.toString().toInt(), imagePath, roomAddress.text.toString()
+            roomAge.text.toString().toInt(), imagePath, roomAddress.text.toString(), AppIndex
         )
             ?.enqueue(object : Callback<BaseResultModel<RoomDetailModel>> {
                 override fun onFailure(call: Call<BaseResultModel<RoomDetailModel>>, t: Throwable) {
@@ -83,7 +84,10 @@ class AddRoomActivity : BaseActivity() {
                     call: Call<BaseResultModel<RoomDetailModel>>,
                     response: Response<BaseResultModel<RoomDetailModel>>
                 ) {
-                    Log.d("AddRoomActivity", "data ${response.body()?.data}  data ${response.body()?.bean?.name}  ${response.body()?.bean?.adress}  ")
+                    Log.d(
+                        "AddRoomActivity",
+                        "data ${response.body()?.data}  data ${response.body()?.bean?.name}  ${response.body()?.bean?.adress}  "
+                    )
                 }
 
             })
