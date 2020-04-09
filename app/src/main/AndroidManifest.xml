@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.takeoutapp">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,8 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.LoginActivity"></activity>
-        <activity android:name=".activity.AddRoomByLocalActivity" />
+        <!--        高德地图key-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="82f2895f36adc24a9e87f58590f11a01"/>
+
+        <activity android:name=".activity.MapActivity" />
+        <activity
+            android:name=".activity.RoomDetailActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".activity.AddRoomByLocalActivity"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".activity.AddRoomActivity"
             android:screenOrientation="nosensor" />

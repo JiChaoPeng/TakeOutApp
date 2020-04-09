@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.takeoutapp.R
 import com.android.takeoutapp.activity.AddRoomActivity
+import com.android.takeoutapp.activity.RoomDetailActivity
 import com.android.takeoutapp.adapter.RoomListAdapter
+import com.android.takeoutapp.model.RoomDetailModel
 import com.android.takeoutapp.util.DataBeanUtil
 import kotlinx.android.synthetic.main.fragment_order.*
 
@@ -54,6 +56,10 @@ class OrderFragment : Fragment() {
         DataBeanUtil.roomListBean?.let {
             adapter?.modelList?.addAll(it.list)
         }
-
+        adapter?.viewHolderConfig?.itemClickListener = {
+            if (it is RoomDetailModel) {
+                RoomDetailActivity.newInstance(context,it.rId)
+            }
+        }
     }
 }

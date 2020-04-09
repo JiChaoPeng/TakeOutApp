@@ -22,6 +22,19 @@ class DataBeanUtil {
             }
         }
 
+        fun getLocalBeanById(roomId: Int): RoomDetailModel? {
+            if (roomListBean != null && roomListBean!!.list.isNotEmpty()) {
+                roomListBean!!.list.forEach {
+                    if (it.rId == roomId) {
+                        return it
+                    }
+                }
+                return null
+            } else {
+                return null
+            }
+        }
+
         var roomListBean: RoomListModel? = null
             set(value) {
                 value?.let {
@@ -86,7 +99,17 @@ class DataBeanUtil {
             )
             list.add(FoodDetailModel("烤乳猪蹄", 15, 89, R.mipmap.musk_zt, "内含烤乳猪蹄3个", MwskRoomId))
             list.add(FoodDetailModel("烤土豆片", 15, 8, R.mipmap.musk_td, "内含烤土豆片3串", MwskRoomId))
-            return RoomDetailModel("木屋烧烤", MwskRoomId, "北京市东城区和平里店", R.mipmap.mwsk, list)
+            return RoomDetailModel(
+                "木屋烧烤",
+                MwskRoomId,
+                "河北省廊坊市广阳区新华路50号万达广场三楼",
+                4,
+                "木屋烧烤隶属于深圳市正君餐饮管理顾问有限公司，2003年木屋烧烤诞生于深圳城中村白石洲一家不足5平米的小店，历经十余载风风雨雨，一步一个脚印坚实走在发展的道路上。木屋烧烤一直把努力“做第一好吃的烧烤”作为第一经营理念，从而受大广大消费者的喜爱，发展至今已成为一个被权威媒体和各大平台认可的唯一全国性直营烧烤连锁品牌，已成功入驻北京、上海、广州、深圳、天津、重庆、佛山、东莞、惠州9座城市，时至2019年2月，直营门店已超过120家。",
+                R.mipmap.mwsk,
+                3,
+                1,
+                list
+            )
 
         }
 
@@ -115,7 +138,17 @@ class DataBeanUtil {
                 )
             )
             list.add(FoodDetailModel("麦趣鸡盒", 4, 16, R.mipmap.mdl_c, "内含麦趣鸡盒一盒", MDLRoomId))
-            return RoomDetailModel("麦当兰麦乐送", MDLRoomId, "河北省保定市榕城区", R.mipmap.mdl, list)
+            return RoomDetailModel(
+                "麦当兰麦乐送",
+                MDLRoomId,
+                "河北省廊坊市广阳区新华路第五大街京客隆1层",
+                5,
+                "麦当劳是一家现代、锐意进取的汉堡公司。1955年，全球第一家麦当劳餐厅由创始人雷•克洛克（Ray Kroc）在美国伊利诺伊州芝加哥Des Plaines创立",
+                R.mipmap.mdl,
+                5,
+                2,
+                list
+            )
 
         }
     }

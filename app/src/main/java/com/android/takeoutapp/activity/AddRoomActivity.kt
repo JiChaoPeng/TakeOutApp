@@ -86,7 +86,7 @@ class AddRoomActivity : BaseActivity() {
                 ) {
                     Log.d(
                         "AddRoomActivity",
-                        "data ${response.body()?.data}  data ${response.body()?.bean?.name}  ${response.body()?.bean?.adress}  "
+                        "data ${response.body()?.data}  data ${response.body()?.bean?.roomname}  ${response.body()?.bean?.adress}  "
                     )
                 }
 
