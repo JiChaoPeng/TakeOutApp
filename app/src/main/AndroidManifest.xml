@@ -20,20 +20,23 @@
         <!--        高德地图key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="82f2895f36adc24a9e87f58590f11a01"/>
+            android:value="82f2895f36adc24a9e87f58590f11a01" />
 
         <activity android:name=".activity.MapActivity" />
         <activity
             android:name=".activity.RoomDetailActivity"
             android:screenOrientation="nosensor" />
         <activity
-            android:name=".activity.LoginActivity"
-            android:screenOrientation="nosensor" />
-        <activity
             android:name=".activity.AddRoomByLocalActivity"
             android:screenOrientation="nosensor" />
         <activity
             android:name=".activity.AddRoomActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".activity.EnterActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".activity.RegisterActivity"
             android:screenOrientation="nosensor" />
         <activity
             android:name=".MainActivity"

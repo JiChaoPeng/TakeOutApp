@@ -43,6 +43,9 @@ class OrderFragment : Fragment() {
 
     private fun initView() {
         titleBar.setTitle("点餐")
+        context?.let {
+            titleBar.setTitleTextColor(ContextCompat.getColor(it, R.color.textColor))
+        }
         titleBar.setRightOptionText("添加餐厅")
         context?.let {
             titleBar.setBackGroundColor(ContextCompat.getColor(it, R.color.theme))
@@ -58,7 +61,7 @@ class OrderFragment : Fragment() {
         }
         adapter?.viewHolderConfig?.itemClickListener = {
             if (it is RoomDetailModel) {
-                RoomDetailActivity.newInstance(context,it.rId)
+                RoomDetailActivity.newInstance(context, it.rId)
             }
         }
     }

@@ -28,6 +28,7 @@ class AddRoomActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         titleBar.setTitle("添加餐厅")
+        titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColor))
         titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.theme))
         initClick()
     }
@@ -86,7 +87,7 @@ class AddRoomActivity : BaseActivity() {
                 ) {
                     Log.d(
                         "AddRoomActivity",
-                        "data ${response.body()?.data}  data ${response.body()?.bean?.roomname}  ${response.body()?.bean?.adress}  "
+                        "data ${response.body()?.data}  data ${response.body()?.bean?.roomname}  ${response.body()?.bean?.address}  "
                     )
                 }
 

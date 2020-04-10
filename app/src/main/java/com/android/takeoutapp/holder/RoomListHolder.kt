@@ -15,7 +15,7 @@ class RoomListHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
         if (model is RoomDetailModel) {
             itemView.image.setImageResource(model.image)
             itemView.name.text = model.roomname
-            itemView.address.text = model.adress
+            itemView.address.text = model.address
         }
     }
 

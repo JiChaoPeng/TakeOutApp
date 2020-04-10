@@ -6,7 +6,7 @@ package com.android.takeoutapp.model
 class RoomDetailModel(
     var roomname: String,
     var rId: Int,
-    var adress: String,
+    var address: String,
     var roomtime: Int,
     var explanation: String,
     var image: Int,

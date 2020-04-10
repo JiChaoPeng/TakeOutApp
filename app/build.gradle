@@ -15,6 +15,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        //keytool -v -list -keystore alo.keystore -alias alo -keypass aloapp2018 -storepass aloapp2018
+        release {
+            storeFile file("../debug.keystore")
+            storePassword "123456"
+            keyAlias "map"
+            keyPassword "123456"
+            v2SigningEnabled false
+        }
+        debug {
+            storeFile file("../debug.keystore")
+            storePassword "123456"
+            keyAlias "map"
+            keyPassword "123456"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
