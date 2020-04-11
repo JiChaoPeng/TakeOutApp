@@ -37,8 +37,10 @@ class DataBeanUtil {
 
         var roomListBean: RoomListModel? = null
             set(value) {
-                value?.let {
-                    MMKV.defaultMMKV().encode("LocalBean", Gson().toJson(it))
+                if (value==null){
+                    MMKV.defaultMMKV().removeValueForKey("LocalBean")
+                }else{
+                    MMKV.defaultMMKV().encode("LocalBean", Gson().toJson(value))
                 }
                 field = value
             }

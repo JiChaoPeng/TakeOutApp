@@ -9,13 +9,17 @@ import com.android.frameworktool.base.BaseActivity
 import com.android.frameworktool.util.onSingleClick
 import com.android.takeoutapp.R
 import com.android.takeoutapp.adapter.RoomDetailAdapter
+import com.android.takeoutapp.model.FoodDetailModel
 import com.android.takeoutapp.model.RoomDetailModel
+import com.android.takeoutapp.util.DataBeanUtil
 import com.android.takeoutapp.util.DataBeanUtil.Companion.getLocalBeanById
+import com.android.takeoutapp.util.SqlUtil
 import kotlinx.android.synthetic.main.activity_room_detail.*
 
 class RoomDetailActivity : BaseActivity() {
     private var bean: RoomDetailModel? = null
     private var adapter = RoomDetailAdapter()
+    private var roomId: Int = 0
 
     companion object {
         private const val ROOM_ID = "ROOM_ID"
@@ -34,7 +38,8 @@ class RoomDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bean = getLocalBeanById(intent.getIntExtra(ROOM_ID, 0))
+        roomId = intent.getIntExtra(ROOM_ID, 0)
+        bean = getLocalBeanById(roomId)
         initView()
         initData()
     }
@@ -46,7 +51,27 @@ class RoomDetailActivity : BaseActivity() {
             adapter.modelList.addAll(it)
             adapter.notifyDataSetChanged()
         }
+        adapter.viewHolderConfig.subviewOnClickListenerMap = mutableMapOf(
+            R.id.foodAdd to { model ->
+                if (model is FoodDetailModel) {
+                    SqlUtil.addShopping(roomId, model, true)
+                    notifyData()
+                }
+            }, R.id.foodDelete to { model ->
+                if (model is FoodDetailModel) {
+                    SqlUtil.addShopping(roomId, model, false)
+                    notifyData()
+                }
+            }
+        )
+    }
 
+    private fun notifyData() {
+        if (getLocalBeanById(roomId)==null) return
+        adapter.modelList.clear()
+        adapter.modelList.add(bean!!)
+        adapter.modelList.addAll(getLocalBeanById(roomId)!!.list)
+        adapter.notifyDataSetChanged()
     }
 
     private fun initView() {

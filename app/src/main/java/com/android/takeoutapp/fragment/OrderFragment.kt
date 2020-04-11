@@ -14,6 +14,7 @@ import com.android.takeoutapp.activity.RoomDetailActivity
 import com.android.takeoutapp.adapter.RoomListAdapter
 import com.android.takeoutapp.model.RoomDetailModel
 import com.android.takeoutapp.util.DataBeanUtil
+import com.android.takeoutapp.util.SqlUtil.Companion.addShopping
 import kotlinx.android.synthetic.main.fragment_order.*
 
 /**

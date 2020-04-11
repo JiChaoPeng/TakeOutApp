@@ -9,13 +9,14 @@ import com.android.takeoutapp.model.FoodDetailModel
 import kotlinx.android.synthetic.main.recycler_item_room_detail.view.*
 
 class RoomDetailHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
-
+    private var num = 0
     override fun config(model: Any?) {
         super.config(model)
         if (model is FoodDetailModel) {
             itemView.image.setImageResource(model.image)
             itemView.name.text = model.foodname
             itemView.price.text = "￥ ${model.price}"
+            itemView.foodNum.text = "${model.num}"
         }
     }
 

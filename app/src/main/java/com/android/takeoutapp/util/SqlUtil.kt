@@ -2,6 +2,8 @@ package com.android.takeoutapp.util
 
 import com.android.takeoutapp.bean.UserBean
 import com.android.takeoutapp.bean.UserListBean
+import com.android.takeoutapp.model.FoodDetailModel
+import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
 import com.google.gson.Gson
 import com.tencent.mmkv.MMKV
 
@@ -12,8 +14,13 @@ class SqlUtil {
     companion object {
         private const val UserKey = "UserKey"
         private const val RegisterUserKey = "RegisterUserKey"
-        fun setUser(user: UserBean) {
-            MMKV.defaultMMKV().encode(UserKey, Gson().toJson(user))
+        private const val ShoppingListKey = "ShoppingListKey"
+        fun setUser(user: UserBean?) {
+            if (user == null) {
+                MMKV.defaultMMKV().removeValueForKey(UserKey)
+            } else {
+                MMKV.defaultMMKV().encode(UserKey, Gson().toJson(user))
+            }
         }
 
         fun getUser(): UserBean? {
@@ -44,6 +51,27 @@ class SqlUtil {
             return Gson().fromJson<UserListBean>(decodeString, UserListBean::class.java)
         }
 
+        fun addShopping(roomId: Int, foodBean: FoodDetailModel, isAdd: Boolean) {
+            val model = roomListBean ?: return
+            model.list.forEachIndexed { index, it ->
+                if (it.rId == roomId) {
+                    it.list.forEachIndexed { index1, bean ->
+                        if (bean.fId == foodBean.fId) {
+                            if (isAdd) {
+                                model.list[index].list[index1].num++
+                                roomListBean = model
+                                return
+                            } else if (bean.num > 0) {
+                                model.list[index].list[index1].num--
+                                roomListBean = model
+                                return
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
     }
 
 }
