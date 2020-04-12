@@ -10,5 +10,6 @@ class FoodDetailModel(
     var image: Int,
     var explanation: String,
     var roomId: Int,
-    var num: Int = 0
+    var num: Int = 0,
+    var isChecked: Boolean = false
 )

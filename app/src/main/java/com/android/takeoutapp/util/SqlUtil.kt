@@ -1,11 +1,14 @@
 package com.android.takeoutapp.util
 
+import com.android.takeoutapp.bean.NumBea
 import com.android.takeoutapp.bean.UserBean
 import com.android.takeoutapp.bean.UserListBean
+import com.android.takeoutapp.event.RefreshEvent
 import com.android.takeoutapp.model.FoodDetailModel
 import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
 import com.google.gson.Gson
 import com.tencent.mmkv.MMKV
+import org.greenrobot.eventbus.EventBus
 
 /**
  * 2020/4/10
@@ -72,6 +75,52 @@ class SqlUtil {
             }
 
         }
-    }
 
+        fun shoppingChecked(roomId: Int, checked: Boolean) {
+            val model = roomListBean ?: return
+            model.list.forEachIndexed { index, it ->
+                if (it.rId == roomId) {
+                    it.list.forEachIndexed { index1, it ->
+                        model.list[index].list[index1].isChecked = checked
+                    }
+                    model.list[index].isChecked = checked
+                    roomListBean = model
+                    EventBus.getDefault().post(RefreshEvent())
+                    return
+                }
+            }
+        }
+
+        fun shoppingChecked(roomId: Int, foodId: Int, checked: Boolean) {
+            val model = roomListBean ?: return
+            model.list.forEachIndexed { index, room ->
+                if (room.rId == roomId) {
+                    room.list.forEachIndexed { index1, food ->
+                        if (food.fId == foodId) {
+                            model.list[index].list[index1].isChecked = checked
+                            roomListBean = model
+                            EventBus.getDefault().post(RefreshEvent())
+                            return
+                        }
+                    }
+                }
+            }
+        }
+
+        fun getShoppingPrice(roomId: Int): Int {
+            val model = roomListBean ?: return 0
+            var price = 0
+            model.list.forEachIndexed { index, room ->
+                if (room.rId == roomId) {
+                    room.list.forEachIndexed { index1, food ->
+                        if (food.isChecked){
+                            price += food.num * food.price
+                        }
+                    }
+                }
+            }
+            return price
+        }
+
+    }
 }

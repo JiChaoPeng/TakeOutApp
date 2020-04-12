@@ -17,9 +17,6 @@ import com.android.takeoutapp.util.DataBeanUtil
 import com.android.takeoutapp.util.SqlUtil.Companion.addShopping
 import kotlinx.android.synthetic.main.fragment_order.*
 
-/**
- * 2020/3/31
- */
 class OrderFragment : Fragment() {
     private var adapter: RoomListAdapter? = null
     override fun onCreateView(

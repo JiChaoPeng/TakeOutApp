@@ -1,11 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.android.frameworktool.view.TitleBarLayout
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/mineLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleBar"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            app:cardCornerRadius="65dp">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:backgroundTint="@color/theme"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@mipmap/waimai" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/form"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/theme"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="查看订单"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/theme"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="管理"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/logOut"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/theme"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="退出登录"
+            android:textSize="15sp" />
+    </LinearLayout>
 
 </RelativeLayout>
