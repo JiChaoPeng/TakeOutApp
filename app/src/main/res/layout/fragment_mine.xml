@@ -27,9 +27,9 @@
 
             <ImageView
                 android:id="@+id/avatar"
-                android:backgroundTint="@color/theme"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:backgroundTint="@color/theme"
                 android:src="@mipmap/waimai" />
         </androidx.cardview.widget.CardView>
 
@@ -50,6 +50,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="查看订单"
+            android:textColor="@color/textColorWhite"
             android:textSize="15sp" />
 
         <TextView
@@ -61,6 +62,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="管理"
+            android:textColor="@color/textColorWhite"
             android:textSize="15sp" />
 
         <TextView
@@ -72,6 +74,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="退出登录"
+            android:textColor="@color/textColorWhite"
             android:textSize="15sp" />
     </LinearLayout>
 

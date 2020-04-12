@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.android.newsapp.util.AlertCallBack
 import com.android.takeoutapp.util.AlertUtil
@@ -30,6 +31,13 @@ class MineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        titleBar.setTitle("我的")
+        context?.let {
+            titleBar.setTitleTextColor(ContextCompat.getColor(it, R.color.textColor))
+        }
+        context?.let {
+            titleBar.setBackGroundColor(ContextCompat.getColor(it, R.color.theme))
+        }
         logOut.setOnClickListener {
             AlertUtil.showAlert(activity, "退出", "确定退出当前账号？", object : AlertCallBack {
                 override fun neutralButton() {
