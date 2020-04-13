@@ -12,6 +12,10 @@ import com.android.takeoutapp.util.AlertUtil
 import com.android.takeoutapp.R
 import com.android.takeoutapp.activity.EnterActivity
 import com.android.takeoutapp.bean.UserBean
+import com.android.takeoutapp.model.CacheBean
+import com.android.takeoutapp.model.CacheListBean
+import com.android.takeoutapp.util.DataBeanUtil.Companion.cacheBean
+import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
 import com.android.takeoutapp.util.SqlUtil.Companion.getUser
 import com.android.takeoutapp.util.SqlUtil.Companion.setUser
 import com.bumptech.glide.Glide
@@ -41,7 +45,10 @@ class MineFragment : Fragment() {
         logOut.setOnClickListener {
             AlertUtil.showAlert(activity, "退出", "确定退出当前账号？", object : AlertCallBack {
                 override fun neutralButton() {
+                    cache()
+                    roomListBean = null
                     setUser(null)
+                    bean = null
                     name!!.text = ""
                     initData()
                     startActivity(Intent(activity, EnterActivity::class.java))
@@ -54,6 +61,34 @@ class MineFragment : Fragment() {
             //            startActivity(
 //                Intent(activity, ::class.java)
 //            )
+        }
+    }
+
+    private fun cache() {
+        if (roomListBean != null && bean != null) {
+            var cacheBean1 = cacheBean
+            if (cacheBean1 == null) {
+                cacheBean1 = CacheListBean(
+                    arrayListOf(
+                        CacheBean(
+                            roomListBean!!,
+                            bean?.username
+                        )
+                    )
+                )
+                cacheBean = cacheBean1
+            } else {
+                cacheBean1.cache.forEachIndexed { index, model ->
+                    if (model.name == bean!!.username) {
+                        cacheBean1.cache[index].listModel = roomListBean!!
+                        cacheBean = cacheBean1
+                        return
+                    }
+                }
+                cacheBean1.cache.add(CacheBean(roomListBean!!, bean!!.username))
+                cacheBean = cacheBean1
+                return
+            }
         }
     }
 

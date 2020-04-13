@@ -1,6 +1,5 @@
 package com.android.takeoutapp.util
 
-import com.android.takeoutapp.bean.NumBea
 import com.android.takeoutapp.bean.UserBean
 import com.android.takeoutapp.bean.UserListBean
 import com.android.takeoutapp.event.RefreshEvent

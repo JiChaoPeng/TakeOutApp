@@ -42,7 +42,6 @@ class MainActivity : BaseActivity() {
 
     private fun initData() {
         MMKV.initialize(this)
-        DataBeanUtil.setLocalBean()
         //申请权限
         if (ContextCompat.checkSelfPermission(
                 this,

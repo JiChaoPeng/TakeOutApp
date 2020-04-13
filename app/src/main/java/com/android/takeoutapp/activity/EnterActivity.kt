@@ -6,6 +6,8 @@ import android.text.TextUtils
 import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
 import com.android.takeoutapp.R
+import com.android.takeoutapp.util.DataBeanUtil
+import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
 import com.android.takeoutapp.util.SqlUtil.Companion.getRegisterUser
 import com.android.takeoutapp.util.SqlUtil.Companion.setUser
 import com.android.takeoutapp.util.ToastUtils
@@ -56,6 +58,15 @@ class EnterActivity : BaseActivity() {
                 if (it.username == loginAccount.text.toString()) {
                     if (it.password == loginPassword.text.toString()) {
                         setUser(it)
+                        val cacheBean = DataBeanUtil.cacheBean
+                        cacheBean?.cache?.forEach { cache ->
+                            if (it.username == cache.name) {
+                                roomListBean = cache.listModel
+                                ToastUtils.showToast(this, "登陆成功")
+                                finish()
+                            }
+                        }
+                        DataBeanUtil.setLocalBean()
                         ToastUtils.showToast(this, "登陆成功")
                         finish()
                     } else {

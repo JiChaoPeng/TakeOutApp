@@ -1,15 +1,14 @@
 package com.android.takeoutapp.util
 
 import com.android.takeoutapp.R
-import com.android.takeoutapp.model.FoodDetailModel
-import com.android.takeoutapp.model.RoomDetailModel
-import com.android.takeoutapp.model.RoomListModel
+import com.android.takeoutapp.model.*
 import com.google.gson.Gson
 import com.tencent.mmkv.MMKV
 
 class DataBeanUtil {
     companion object {
         const val LocalBean = "LocalBean"
+        const val CacheBean = "CacheBean"
         private const val MDLRoomId = 0
         private const val MwskRoomId = 1
         fun setLocalBean() {
@@ -37,9 +36,9 @@ class DataBeanUtil {
 
         var roomListBean: RoomListModel? = null
             set(value) {
-                if (value==null){
+                if (value == null) {
                     MMKV.defaultMMKV().removeValueForKey("LocalBean")
-                }else{
+                } else {
                     MMKV.defaultMMKV().encode("LocalBean", Gson().toJson(value))
                 }
                 field = value
@@ -47,9 +46,33 @@ class DataBeanUtil {
             get() {
                 return if (field == null) {
                     Gson().fromJson(
-                        MMKV.defaultMMKV().decodeString(LocalBean),
+                        MMKV.defaultMMKV().decodeString("LocalBean"),
                         RoomListModel::class.java
                     )
+                } else {
+                    field
+                }
+            }
+        var cacheBean: CacheListBean? = null
+            set(value) {
+                if (value == null) {
+                    MMKV.defaultMMKV().removeValueForKey(CacheBean)
+                } else {
+                    MMKV.defaultMMKV().encode(CacheBean, Gson().toJson(value))
+                }
+                field = value
+            }
+            get() {
+                return if (field == null) {
+                    if (MMKV.defaultMMKV().decodeString(CacheBean) == null) {
+                        null
+                    } else {
+                        Gson().fromJson(
+                            MMKV.defaultMMKV().decodeString(CacheBean),
+                            CacheListBean::class.java
+                        )
+                    }
+
                 } else {
                     field
                 }
