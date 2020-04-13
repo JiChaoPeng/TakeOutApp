@@ -25,7 +25,7 @@ class MapActivity : BaseActivity(), GeocodeSearch.OnGeocodeSearchListener {
     companion object {
         private const val RoomName = "RoomName"
         private const val RoomAddress = "RoomAddress"
-        fun newInstance(context: Context, roomName: String, roomAddress: String?) {
+        fun newInstance(context: Context, roomName: String?, roomAddress: String?) {
             val intent = Intent(context, MapActivity::class.java).apply {
                 putExtra(RoomName, roomName)
                 putExtra(RoomAddress, roomAddress)

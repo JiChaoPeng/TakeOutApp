@@ -29,7 +29,7 @@ class ShoppingListHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
                     adapter.modelList.add(it)
                 }
             }
-            adapter.modelList.add(NumBea(model.rId))
+            adapter.modelList.add(NumBea(model.rId,model.address,model.roomname))
             adapter.notifyDataSetChanged()
         }
     }

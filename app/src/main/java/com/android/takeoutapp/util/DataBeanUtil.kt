@@ -1,6 +1,7 @@
 package com.android.takeoutapp.util
 
 import com.android.takeoutapp.R
+import com.android.takeoutapp.bean.FormBeanList
 import com.android.takeoutapp.model.*
 import com.google.gson.Gson
 import com.tencent.mmkv.MMKV
@@ -9,6 +10,8 @@ class DataBeanUtil {
     companion object {
         const val LocalBean = "LocalBean"
         const val CacheBean = "CacheBean"
+        private const val FormBeanKey = "FormBean"
+
         private const val MDLRoomId = 0
         private const val MwskRoomId = 1
         fun setLocalBean() {
@@ -33,6 +36,26 @@ class DataBeanUtil {
                 return null
             }
         }
+
+        var formBeanList: FormBeanList? = null
+            set(value) {
+                if (value == null) {
+                    MMKV.defaultMMKV().removeValueForKey(FormBeanKey)
+                } else {
+                    MMKV.defaultMMKV().encode(FormBeanKey, Gson().toJson(value))
+                }
+                field = value
+            }
+            get() {
+                return if (field == null) {
+                    Gson().fromJson(
+                        MMKV.defaultMMKV().decodeString(FormBeanKey),
+                        FormBeanList::class.java
+                    )
+                } else {
+                    field
+                }
+            }
 
         var roomListBean: RoomListModel? = null
             set(value) {

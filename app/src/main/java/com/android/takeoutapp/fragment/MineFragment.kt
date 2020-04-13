@@ -7,14 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.android.frameworktool.util.onSingleClick
 import com.android.newsapp.util.AlertCallBack
 import com.android.takeoutapp.util.AlertUtil
 import com.android.takeoutapp.R
 import com.android.takeoutapp.activity.EnterActivity
+import com.android.takeoutapp.activity.FormListActivity
 import com.android.takeoutapp.bean.UserBean
 import com.android.takeoutapp.model.CacheBean
 import com.android.takeoutapp.model.CacheListBean
+import com.android.takeoutapp.util.DataBeanUtil
 import com.android.takeoutapp.util.DataBeanUtil.Companion.cacheBean
+import com.android.takeoutapp.util.DataBeanUtil.Companion.formBeanList
 import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
 import com.android.takeoutapp.util.SqlUtil.Companion.getUser
 import com.android.takeoutapp.util.SqlUtil.Companion.setUser
@@ -42,11 +46,15 @@ class MineFragment : Fragment() {
         context?.let {
             titleBar.setBackGroundColor(ContextCompat.getColor(it, R.color.theme))
         }
+        form.onSingleClick {
+            startActivity(Intent(activity, FormListActivity::class.java))
+        }
         logOut.setOnClickListener {
             AlertUtil.showAlert(activity, "退出", "确定退出当前账号？", object : AlertCallBack {
                 override fun neutralButton() {
                     cache()
                     roomListBean = null
+                    formBeanList = null
                     setUser(null)
                     bean = null
                     name!!.text = ""
@@ -56,11 +64,6 @@ class MineFragment : Fragment() {
 
                 override fun negativeButton() {}
             })
-        }
-        form.setOnClickListener { v: View? ->
-            //            startActivity(
-//                Intent(activity, ::class.java)
-//            )
         }
     }
 
@@ -72,7 +75,8 @@ class MineFragment : Fragment() {
                     arrayListOf(
                         CacheBean(
                             roomListBean!!,
-                            bean?.username
+                            bean?.username,
+                            formBeanList
                         )
                     )
                 )
@@ -85,7 +89,12 @@ class MineFragment : Fragment() {
                         return
                     }
                 }
-                cacheBean1.cache.add(CacheBean(roomListBean!!, bean!!.username))
+                cacheBean1.cache.add(
+                    CacheBean(
+                        roomListBean!!, bean!!.username,
+                        DataBeanUtil.formBeanList
+                    )
+                )
                 cacheBean = cacheBean1
                 return
             }

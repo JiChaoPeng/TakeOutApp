@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
 import com.android.takeoutapp.R
 import com.android.takeoutapp.util.DataBeanUtil
+import com.android.takeoutapp.util.DataBeanUtil.Companion.formBeanList
 import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
 import com.android.takeoutapp.util.SqlUtil.Companion.getRegisterUser
 import com.android.takeoutapp.util.SqlUtil.Companion.setUser
@@ -62,6 +63,7 @@ class EnterActivity : BaseActivity() {
                         cacheBean?.cache?.forEach { cache ->
                             if (it.username == cache.name) {
                                 roomListBean = cache.listModel
+                                formBeanList=cache.formList
                                 ToastUtils.showToast(this, "登陆成功")
                                 finish()
                             }

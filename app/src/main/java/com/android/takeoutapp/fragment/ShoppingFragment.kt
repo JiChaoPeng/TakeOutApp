@@ -8,8 +8,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.takeoutapp.R
+import com.android.takeoutapp.activity.AddOrderFormActivity
 import com.android.takeoutapp.adapter.ShoppingListAdapter
 import com.android.takeoutapp.event.RefreshEvent
+import com.android.takeoutapp.model.RoomDetailModel
 import com.android.takeoutapp.util.DataBeanUtil
 import kotlinx.android.synthetic.main.fragment_shopping.*
 import org.greenrobot.eventbus.EventBus
@@ -31,11 +33,13 @@ class ShoppingFragment : Fragment() {
         initView()
         initData()
     }
+
     override fun onResume() {
         super.onResume()
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
+        initData()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -49,6 +53,7 @@ class ShoppingFragment : Fragment() {
             EventBus.getDefault().unregister(this)
         }
     }
+
     private fun initData() {
         val bean = DataBeanUtil.roomListBean ?: return
         adapter?.modelList?.clear()
@@ -77,12 +82,6 @@ class ShoppingFragment : Fragment() {
         }
         adapter = ShoppingListAdapter()
         recyclerView.adapter = adapter
-
-        adapter?.viewHolderConfig?.itemClickListener = {
-            //            if (it is RoomDetailModel) {
-//                RoomDetailActivity.newInstance(context, it.rId)
-//            }
-        }
 
     }
 }
