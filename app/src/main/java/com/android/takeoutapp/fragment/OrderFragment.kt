@@ -39,6 +39,14 @@ class OrderFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        adapter?.modelList?.clear()
+        DataBeanUtil.roomListBean?.let {
+            adapter?.modelList?.addAll(it.list)
+            adapter?.notifyDataSetChanged()
+        }
+    }
     private fun initView() {
         titleBar.setTitle("点餐")
         context?.let {
@@ -53,10 +61,7 @@ class OrderFragment : Fragment() {
         }
         adapter = RoomListAdapter()
         orderRecycler.adapter = adapter
-        adapter?.modelList?.clear()
-        DataBeanUtil.roomListBean?.let {
-            adapter?.modelList?.addAll(it.list)
-        }
+
         adapter?.viewHolderConfig?.itemClickListener = {
             if (it is RoomDetailModel) {
                 RoomDetailActivity.newInstance(context, it.rId)

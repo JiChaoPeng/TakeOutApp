@@ -9,73 +9,116 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:id="@+id/mineLayout"
+    <RelativeLayout
+        android:id="@+id/managerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/titleBar"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:orientation="vertical">
+        android:layout_below="@id/titleBar">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
-            app:cardCornerRadius="65dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/manager" />
 
-            <ImageView
-                android:id="@+id/avatar"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_80_alpha" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleBar">
+
+        <LinearLayout
+            android:id="@+id/mineLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="vertical">
+
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:backgroundTint="@color/theme"
-                android:src="@mipmap/waimai" />
-        </androidx.cardview.widget.CardView>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                app:cardCornerRadius="65dp">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:textSize="18sp" />
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:backgroundTint="@color/theme"
+                    android:src="@mipmap/waimai" />
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/form"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="40dp"
-            android:background="@color/theme"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="查看订单"
-            android:textColor="@color/textColorWhite"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/roomName"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:textSize="19sp" />
+            <TextView
+                android:id="@+id/form"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/theme"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="查看我的订单"
+                android:textColor="@color/textColorWhite"
+                android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/edit"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/theme"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="管理"
-            android:textColor="@color/textColorWhite"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/update"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/theme"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="升级为店铺管理员"
+                android:textColor="@color/textColorWhite"
+                android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/logOut"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/theme"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="退出登录"
-            android:textColor="@color/textColorWhite"
-            android:textSize="15sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/manager"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/theme"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="店铺管理"
+                android:textColor="@color/textColorWhite"
+                android:textSize="15sp" />
 
+            <TextView
+                android:id="@+id/logOut"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/theme"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="退出登录"
+                android:textColor="@color/textColorWhite"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

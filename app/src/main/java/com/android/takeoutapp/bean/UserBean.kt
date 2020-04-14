@@ -5,6 +5,9 @@ class UserBean(
     var password: String,
     var image: String,
     var age: Int,
-    var id: Int
+    var id: Int,
+    var roomId: Int? = null,
+    var roomName: String? = null
 )
+
 class UserListBean(var list: ArrayList<UserBean>)

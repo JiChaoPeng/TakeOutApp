@@ -149,6 +149,7 @@ class DataBeanUtil {
             list.add(FoodDetailModel("烤土豆片", 15, 8, R.mipmap.musk_td, "内含烤土豆片3串", MwskRoomId))
             return RoomDetailModel(
                 "木屋烧烤",
+                "111",
                 MwskRoomId,
                 "河北省廊坊市广阳区新华路50号万达广场三楼",
                 4,
@@ -188,6 +189,7 @@ class DataBeanUtil {
             list.add(FoodDetailModel("麦趣鸡盒", 4, 16, R.mipmap.mdl_c, "内含麦趣鸡盒一盒", MDLRoomId))
             return RoomDetailModel(
                 "麦当兰麦乐送",
+                "000",
                 MDLRoomId,
                 "河北省廊坊市广阳区新华路第五大街京客隆1层",
                 5,

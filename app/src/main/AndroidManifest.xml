@@ -17,14 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.FormListActivity"  android:screenOrientation="nosensor"/>
-        <activity android:name=".activity.FormCommitActivity" android:screenOrientation="nosensor" />
-        <!-- 高德地图key -->
+        <activity android:name=".activity.UpdateManagerActivity" android:screenOrientation="nosensor"/>
+        <activity android:name=".activity.FormDetailActivity" />
+        <activity
+            android:name=".activity.FormListActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".activity.FormCommitActivity"
+            android:screenOrientation="nosensor" /> <!-- 高德地图key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="82f2895f36adc24a9e87f58590f11a01" />
 
-        <activity android:name=".activity.MapActivity"  android:screenOrientation="nosensor"/>
+        <activity
+            android:name=".activity.MapActivity"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".activity.RoomDetailActivity"
             android:screenOrientation="nosensor" />

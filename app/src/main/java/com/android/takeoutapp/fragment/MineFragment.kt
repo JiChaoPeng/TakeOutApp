@@ -13,6 +13,7 @@ import com.android.takeoutapp.util.AlertUtil
 import com.android.takeoutapp.R
 import com.android.takeoutapp.activity.EnterActivity
 import com.android.takeoutapp.activity.FormListActivity
+import com.android.takeoutapp.activity.UpdateManagerActivity
 import com.android.takeoutapp.bean.UserBean
 import com.android.takeoutapp.model.CacheBean
 import com.android.takeoutapp.model.CacheListBean
@@ -64,6 +65,9 @@ class MineFragment : Fragment() {
 
                 override fun negativeButton() {}
             })
+        }
+        update.onSingleClick {
+            startActivity(Intent(activity, UpdateManagerActivity::class.java))
         }
     }
 
@@ -127,6 +131,19 @@ class MineFragment : Fragment() {
                     .into(avatar)
             }
             name.text = bean?.username
+
+            if (bean?.roomId == null) {
+                manager.visibility = View.GONE
+                name.setTextColor(ContextCompat.getColor(activity!!, R.color.text_black))
+                managerLayout.visibility = View.GONE
+                roomName.visibility = View.GONE
+            } else {
+                manager.visibility = View.VISIBLE
+                name.setTextColor(ContextCompat.getColor(activity!!, R.color.white))
+                managerLayout.visibility = View.VISIBLE
+                roomName.visibility = View.VISIBLE
+                roomName.text = "${bean?.roomName} 管理员"
+            }
         }
     }
 }
