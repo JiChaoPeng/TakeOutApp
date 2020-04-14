@@ -48,7 +48,7 @@ class MineFragment : Fragment() {
             titleBar.setBackGroundColor(ContextCompat.getColor(it, R.color.theme))
         }
         form.onSingleClick {
-            startActivity(Intent(activity, FormListActivity::class.java))
+            FormListActivity.newInstance(activity)
         }
         logOut.setOnClickListener {
             AlertUtil.showAlert(activity, "退出", "确定退出当前账号？", object : AlertCallBack {
@@ -80,6 +80,7 @@ class MineFragment : Fragment() {
                         CacheBean(
                             roomListBean!!,
                             bean?.username,
+                            bean,
                             formBeanList
                         )
                     )
@@ -96,7 +97,8 @@ class MineFragment : Fragment() {
                 cacheBean1.cache.add(
                     CacheBean(
                         roomListBean!!, bean!!.username,
-                        DataBeanUtil.formBeanList
+                        bean,
+                        formBeanList
                     )
                 )
                 cacheBean = cacheBean1
@@ -137,13 +139,24 @@ class MineFragment : Fragment() {
                 name.setTextColor(ContextCompat.getColor(activity!!, R.color.text_black))
                 managerLayout.visibility = View.GONE
                 roomName.visibility = View.GONE
+                allForm.visibility = View.GONE
+                update.visibility = View.VISIBLE
             } else {
+                update.visibility = View.GONE
                 manager.visibility = View.VISIBLE
+                allForm.visibility = View.VISIBLE
                 name.setTextColor(ContextCompat.getColor(activity!!, R.color.white))
                 managerLayout.visibility = View.VISIBLE
                 roomName.visibility = View.VISIBLE
                 roomName.text = "${bean?.roomName} 管理员"
             }
         }
+        allForm.onSingleClick {
+            FormListActivity.newInstance(activity,true)
+        }
+        manager.onSingleClick {
+
+        }
+
     }
 }

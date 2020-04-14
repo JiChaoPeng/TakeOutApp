@@ -96,6 +96,17 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/allForm"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/theme"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="店铺订单"
+                android:textColor="@color/textColorWhite"
+                android:textSize="15sp" />
+            <TextView
                 android:id="@+id/manager"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -103,7 +114,7 @@
                 android:background="@color/theme"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="店铺管理"
+                android:text="菜单管理"
                 android:textColor="@color/textColorWhite"
                 android:textSize="15sp" />
 

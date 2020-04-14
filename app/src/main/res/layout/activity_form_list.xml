@@ -16,4 +16,13 @@
         android:layout_below="@id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <TextView
+        android:layout_below="@id/titleBar"
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="暂无订单~"/>
 </RelativeLayout>

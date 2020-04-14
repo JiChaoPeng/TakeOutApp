@@ -15,6 +15,7 @@ class FormListHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
     override fun config(model: Any?) {
         super.config(model)
         if (model is FormBean) {
+            itemView.ownerName.text = model.username
             itemView.name.text = model.roomName
             itemView.price.text = "￥ ${model.price}"
             val currentDateTimeString: String =
