@@ -13,6 +13,7 @@ import com.android.takeoutapp.util.AlertUtil
 import com.android.takeoutapp.R
 import com.android.takeoutapp.activity.EnterActivity
 import com.android.takeoutapp.activity.FormListActivity
+import com.android.takeoutapp.activity.ManagerFoodActivity
 import com.android.takeoutapp.activity.UpdateManagerActivity
 import com.android.takeoutapp.bean.UserBean
 import com.android.takeoutapp.model.CacheBean
@@ -152,10 +153,10 @@ class MineFragment : Fragment() {
             }
         }
         allForm.onSingleClick {
-            FormListActivity.newInstance(activity,true)
+            FormListActivity.newInstance(activity, true)
         }
         manager.onSingleClick {
-
+            startActivity(Intent(activity, ManagerFoodActivity::class.java))
         }
 
     }

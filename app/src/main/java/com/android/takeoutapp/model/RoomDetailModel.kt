@@ -13,6 +13,6 @@ class RoomDetailModel(
     var image: Int,
     var levels: Int,
     var oId: Int,
-    var list: List<FoodDetailModel>,
+    var list: ArrayList<FoodDetailModel>,
     var isChecked: Boolean = false
     )

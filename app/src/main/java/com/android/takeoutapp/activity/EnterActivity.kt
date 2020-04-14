@@ -64,7 +64,9 @@ class EnterActivity : BaseActivity() {
                             if (it.username == cache.name) {
                                 roomListBean = cache.listModel
                                 formBeanList=cache.formList
-                                setUser(cache.user)
+                                if (cache.user!=null) {
+                                    setUser(cache.user)
+                                }
                                 ToastUtils.showToast(this, "登陆成功")
                                 finish()
                             }

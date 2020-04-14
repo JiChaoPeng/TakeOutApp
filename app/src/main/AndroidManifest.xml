@@ -17,7 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.UpdateManagerActivity" android:screenOrientation="nosensor"/>
+        <activity android:name=".activity.AddFoodActivity"></activity>
+        <activity android:name=".activity.ManagerFoodActivity" />
+        <activity
+            android:name=".activity.UpdateManagerActivity"
+            android:screenOrientation="nosensor" />
         <activity android:name=".activity.FormDetailActivity" />
         <activity
             android:name=".activity.FormListActivity"

@@ -10,6 +10,7 @@
     <color name="black_80_alpha">#991C1C1C</color>
     <color name="black_50_alpha">#661C1C1C</color>
     <color name="textColor">#F4F0F0</color>
+    <color name="red">#A61414</color>
     <color name="textColorWhite">#F5F4F4</color>
     <color name="garyEE">#EEEDED</color>
 </resources>

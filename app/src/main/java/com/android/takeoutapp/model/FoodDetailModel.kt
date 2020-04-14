@@ -13,5 +13,6 @@ class FoodDetailModel(
     var explanation: String,
     var roomId: Int,
     var num: Int = 0,
-    var isChecked: Boolean = false
+    var isChecked: Boolean = false,
+    var imagePath: String?=null
 ):Serializable

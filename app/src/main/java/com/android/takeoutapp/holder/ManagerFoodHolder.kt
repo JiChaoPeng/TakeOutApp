@@ -7,11 +7,9 @@ import com.android.frameworktool.util.appInflate
 import com.android.frameworktool.util.loadImage
 import com.android.takeoutapp.R
 import com.android.takeoutapp.model.FoodDetailModel
-import com.android.takeoutapp.util.SqlUtil.Companion.shoppingChecked
-import kotlinx.android.synthetic.main.recycler_item_shopping_item.view.*
+import kotlinx.android.synthetic.main.recycler_item_food_manager.view.*
 
-class ShoppingItemHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
-
+class ManagerFoodHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
     override fun config(model: Any?) {
         super.config(model)
         if (model is FoodDetailModel) {
@@ -21,17 +19,13 @@ class ShoppingItemHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
                 itemView.image.setImageResource(model.image)
             }
             itemView.name.text = model.foodname
-            itemView.checkBox.isChecked = model.isChecked
-            itemView.price.text = "x${model.num}   ￥ ${model.num * model.price}"
-            itemView.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-                shoppingChecked(model.roomId, model.fId, isChecked)
-            }
+            itemView.price.text = "￥ ${model.price}"
         }
     }
 
     companion object {
-        fun creator(parent: ViewGroup): ShoppingItemHolder {
-            return ShoppingItemHolder(parent.appInflate(R.layout.recycler_item_shopping_item))
+        fun creator(parent: ViewGroup): ManagerFoodHolder {
+            return ManagerFoodHolder(parent.appInflate(R.layout.recycler_item_food_manager))
         }
     }
 }
