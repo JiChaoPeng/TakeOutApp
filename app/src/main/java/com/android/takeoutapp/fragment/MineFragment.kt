@@ -1,5 +1,6 @@
 package com.android.takeoutapp.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,10 +12,7 @@ import com.android.frameworktool.util.onSingleClick
 import com.android.newsapp.util.AlertCallBack
 import com.android.takeoutapp.util.AlertUtil
 import com.android.takeoutapp.R
-import com.android.takeoutapp.activity.EnterActivity
-import com.android.takeoutapp.activity.FormListActivity
-import com.android.takeoutapp.activity.ManagerFoodActivity
-import com.android.takeoutapp.activity.UpdateManagerActivity
+import com.android.takeoutapp.activity.*
 import com.android.takeoutapp.bean.UserBean
 import com.android.takeoutapp.model.CacheBean
 import com.android.takeoutapp.model.CacheListBean
@@ -54,22 +52,33 @@ class MineFragment : Fragment() {
         logOut.setOnClickListener {
             AlertUtil.showAlert(activity, "退出", "确定退出当前账号？", object : AlertCallBack {
                 override fun neutralButton() {
-                    cache()
-                    roomListBean = null
-                    formBeanList = null
-                    setUser(null)
-                    bean = null
-                    name!!.text = ""
-                    initData()
-                    startActivity(Intent(activity, EnterActivity::class.java))
+                    logOutFun()
                 }
 
                 override fun negativeButton() {}
             })
         }
         update.onSingleClick {
-            startActivity(Intent(activity, UpdateManagerActivity::class.java))
+            startActivityForResult(Intent(activity, UpdateManagerActivity::class.java),100)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode==100&&resultCode==Activity.RESULT_OK){
+            bean=getUser()
+            logOutFun()
+        }
+    }
+    private fun logOutFun() {
+        cache()
+        roomListBean = null
+        formBeanList = null
+        setUser(null)
+        bean = null
+        name!!.text = ""
+        initData()
+        startActivity(Intent(activity, SplashActivityActivity::class.java))
     }
 
     private fun cache() {
@@ -90,6 +99,7 @@ class MineFragment : Fragment() {
             } else {
                 cacheBean1.cache.forEachIndexed { index, model ->
                     if (model.name == bean!!.username) {
+                        cacheBean1.cache[index].user = bean
                         cacheBean1.cache[index].listModel = roomListBean!!
                         cacheBean = cacheBean1
                         return

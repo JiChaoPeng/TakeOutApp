@@ -17,7 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.AddFoodActivity"></activity>
+        <activity
+            android:theme="@style/SplashTheme"
+            android:name=".activity.SplashActivityActivity"
+            android:screenOrientation="nosensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.ManagerActivity" />
+        <activity android:name=".activity.AddFoodActivity" />
         <activity android:name=".activity.ManagerFoodActivity" />
         <activity
             android:name=".activity.UpdateManagerActivity"
@@ -53,13 +64,7 @@
             android:screenOrientation="nosensor" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="nosensor">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="nosensor"></activity>
         <activity
             android:name=".activity.AddOrderFormActivity"
             android:screenOrientation="nosensor" />

@@ -4,10 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
+import com.android.frameworktool.util.onSingleClick
+import com.android.newsapp.util.AlertCallBack
 import com.android.takeoutapp.R
 import com.android.takeoutapp.model.FoodDetailModel
+import com.android.takeoutapp.util.AlertUtil
 import com.android.takeoutapp.util.DataBeanUtil.Companion.cacheBean
 import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
 import com.android.takeoutapp.util.SqlUtil.Companion.getUser
@@ -56,6 +60,8 @@ class AddFoodActivity : BaseActivity() {
             foodPrice.setText("${foodDetail!!.price}")
             image = foodDetail!!.image
             imagePath = foodDetail!!.imagePath
+        } else {
+            delete.visibility = View.GONE
         }
         initClick()
     }
@@ -66,6 +72,15 @@ class AddFoodActivity : BaseActivity() {
             val intent1 = Intent(Intent.ACTION_PICK)
             intent1.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             startActivityForResult(intent1, 100)
+        }
+        delete.onSingleClick {
+            AlertUtil.showAlert(this, "删除", "确定删除该餐品？？删除后无法恢复！请慎重", object : AlertCallBack {
+                override fun neutralButton() {
+                    deleteFood()
+                }
+
+                override fun negativeButton() {}
+            })
         }
         complete.setOnClickListener {
             when {
@@ -92,6 +107,50 @@ class AddFoodActivity : BaseActivity() {
         }
     }
 
+    private fun deleteFood() {
+        val roomList = roomListBean
+        var x = 0
+        var y = 0
+        var z = 0
+        roomList?.list?.forEachIndexed { _, roomDetailModel ->
+            if (roomDetailModel.rId == foodDetail!!.roomId) {
+                roomDetailModel.list.forEachIndexed { _, food ->
+                    if (food.fId == foodDetail!!.fId) {
+                        roomList.list[x].list.removeAt(y)
+                        roomListBean = roomList
+
+                    }
+                    y++
+                }
+            }
+            x++
+        }
+        x = 0
+        y = 0
+        z = 0
+        val cache = cacheBean
+        cache?.cache?.forEachIndexed { index, cacheBean ->
+            if (cacheBean.name != getUser()!!.username) {
+                cacheBean.listModel.list.let { room ->
+                    room.forEachIndexed { index1, roomDetailModel ->
+                        if (roomDetailModel.rId == foodDetail!!.roomId) {
+                            roomDetailModel.list.forEachIndexed { index2, food ->
+                                if (food.fId == foodDetail!!.fId) {
+                                    cache.cache[x].listModel.list[y].list.removeAt(z)
+                                }
+                                z++
+                            }
+                        }
+                        y++
+                    }
+                }
+            }
+            x++
+        }
+        cacheBean = cache
+        finish()
+    }
+
     private fun updateFood() {
         val foodDetailModel = FoodDetailModel(
             foodName.text.toString(),
@@ -99,7 +158,7 @@ class AddFoodActivity : BaseActivity() {
             foodPrice.text.toString().toInt(),
             image,
             foodExplanation.text.toString(),
-            foodDetail!!.roomId, 0, false,imagePath
+            foodDetail!!.roomId, 0, false, imagePath
         )
 
         val roomList = roomListBean

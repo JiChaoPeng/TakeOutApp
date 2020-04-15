@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.android.frameworktool.base.BaseActivity
 import com.android.takeoutapp.activity.EnterActivity
+import com.android.takeoutapp.activity.ManagerActivity
 import com.android.takeoutapp.fragment.MineFragment
 import com.android.takeoutapp.fragment.OrderFragment
 import com.android.takeoutapp.fragment.ShoppingFragment
@@ -37,27 +38,15 @@ class MainActivity : BaseActivity() {
         val user = getUser()
         if (user == null) {
             startActivity(Intent(this, EnterActivity::class.java))
+        }else if (user.roomId!=null){
+            val intent = Intent(this, ManagerActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
     }
 
     private fun initData() {
-        MMKV.initialize(this)
-        //申请权限
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ),
-                100
-            )
-        }
     }
 
     private fun initView() {

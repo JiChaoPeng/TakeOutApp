@@ -1,5 +1,6 @@
 package com.android.takeoutapp.activity
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -8,6 +9,9 @@ import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
 import com.android.frameworktool.util.onSingleClick
 import com.android.takeoutapp.R
+import com.android.takeoutapp.model.CacheBean
+import com.android.takeoutapp.model.CacheListBean
+import com.android.takeoutapp.util.DataBeanUtil
 import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
 import com.android.takeoutapp.util.SqlUtil.Companion.getUser
 import com.android.takeoutapp.util.SqlUtil.Companion.setUser
@@ -19,7 +23,7 @@ class UpdateManagerActivity : BaseActivity() {
     override fun getContentView(): Int {
         return R.layout.activity_update_manager
     }
-
+    private val user = getUser()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         titleBar.setTitle("选择要管理的店铺")
@@ -55,15 +59,14 @@ class UpdateManagerActivity : BaseActivity() {
                     ToastUtils.showToast(this,"店铺管理员密码错误")
                 }
                 else -> {
-                    val user = getUser()
                     user?.roomId=list[spinner.selectedItemPosition].rId
                     user?.roomName=list[spinner.selectedItemPosition].roomname
                     setUser(user)
                     ToastUtils.showToast(this,"升级管理员成功！")
+                    setResult(Activity.RESULT_OK)
                     finish()
                 }
             }
         }
     }
-
 }

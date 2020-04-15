@@ -51,7 +51,7 @@ class AddOrderFormActivity : BaseActivity() {
                 val formBean = FormBean(
                     user.username,
                     user.id,
-                    intent.getIntExtra(ROOMID, 0),
+                    numBea!!.roomId,
                     System.currentTimeMillis(),
                     allPrice,
                     numBea!!.roomAddress,

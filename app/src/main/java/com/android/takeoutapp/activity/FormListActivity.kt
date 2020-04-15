@@ -12,6 +12,7 @@ import com.android.takeoutapp.adapter.FormListAdapter
 import com.android.takeoutapp.bean.FormBean
 import com.android.takeoutapp.util.DataBeanUtil.Companion.cacheBean
 import com.android.takeoutapp.util.DataBeanUtil.Companion.formBeanList
+import com.android.takeoutapp.util.SqlUtil.Companion.getUser
 import kotlinx.android.synthetic.main.activity_form_list.*
 
 class FormListActivity : BaseActivity() {
@@ -33,6 +34,8 @@ class FormListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val user = getUser()
+        if (user == null) finish()
         titleBar.setTitle("订单")
         titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColor))
         titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.theme))
@@ -49,7 +52,11 @@ class FormListActivity : BaseActivity() {
             val arrayListOf = arrayListOf<FormBean>()
             cacheBean?.cache?.forEach {
                 if (it.formList != null && it.formList!!.list.size > 0) {
-                    arrayListOf.addAll(it.formList!!.list)
+                    it.formList?.list?.forEach { form ->
+                        if (form.roomId == user?.roomId) {
+                            arrayListOf.add(form)
+                        }
+                    }
                 }
             }
             adapter.modelList.clear()
