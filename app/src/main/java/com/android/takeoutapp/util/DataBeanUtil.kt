@@ -145,8 +145,8 @@ class DataBeanUtil {
                     MwskRoomId
                 )
             )
-            list.add(FoodDetailModel("烤乳猪蹄", 15, 89, R.mipmap.musk_zt, "内含烤乳猪蹄3个", MwskRoomId))
-            list.add(FoodDetailModel("烤土豆片", 15, 8, R.mipmap.musk_td, "内含烤土豆片3串", MwskRoomId))
+            list.add(FoodDetailModel("烤乳猪蹄", 16, 89, R.mipmap.musk_zt, "内含烤乳猪蹄3个", MwskRoomId))
+            list.add(FoodDetailModel("烤土豆片", 17, 8, R.mipmap.musk_td, "内含烤土豆片3串", MwskRoomId))
             return RoomDetailModel(
                 "木屋烧烤",
                 "111",

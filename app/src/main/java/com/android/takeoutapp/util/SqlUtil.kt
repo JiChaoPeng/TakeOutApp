@@ -60,6 +60,9 @@ class SqlUtil {
                     it.list.forEachIndexed { index1, bean ->
                         if (bean.fId == foodBean.fId) {
                             if (isAdd) {
+                                if (it.isChecked) {
+                                    model.list[index].list[index1].isChecked = true
+                                }
                                 model.list[index].list[index1].num++
                                 roomListBean = model
                                 return
@@ -80,7 +83,9 @@ class SqlUtil {
             model.list.forEachIndexed { index, it ->
                 if (it.rId == roomId) {
                     it.list.forEachIndexed { index1, it ->
-                        model.list[index].list[index1].isChecked = checked
+                        if (it.num > 0) {
+                            model.list[index].list[index1].isChecked = checked
+                        }
                     }
                     model.list[index].isChecked = checked
                     roomListBean = model
@@ -112,7 +117,7 @@ class SqlUtil {
             model.list.forEachIndexed { index, room ->
                 if (room.rId == roomId) {
                     room.list.forEachIndexed { index1, food ->
-                        if (food.isChecked){
+                        if (food.isChecked) {
                             price += food.num * food.price
                         }
                     }

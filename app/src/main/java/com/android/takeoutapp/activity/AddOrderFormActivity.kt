@@ -109,7 +109,7 @@ class AddOrderFormActivity : BaseActivity() {
             for (model in it.list) {
                 if (model.rId == numBea!!.roomId) {
                     for (food in model.list) {
-                        if (food.isChecked) {
+                        if (food.isChecked && food.num > 0) {
                             mealBeans.add(food)
                             allPrice += food.price * food.num
                         }
