@@ -65,7 +65,11 @@ class FormListActivity : BaseActivity() {
         } else {
             if (formBeanList?.list != null && formBeanList!!.list.isNotEmpty()) {
                 adapter.modelList.clear()
-                adapter.modelList.addAll(formBeanList!!.list)
+                formBeanList!!.list.forEach {
+                    if (it.username==user?.username){
+                        adapter.modelList.add(it)
+                    }
+                }
                 adapter.notifyDataSetChanged()
             }
         }

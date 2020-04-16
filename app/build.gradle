@@ -59,4 +59,6 @@ dependencies {
     implementation 'com.amap.api:search:latest.integration'
     //发生
     implementation 'org.greenrobot:eventbus:3.1.1'
+
+    implementation 'cn.qqtheme.framework:AndroidPicker:latest.integration'
 }

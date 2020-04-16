@@ -34,9 +34,9 @@ class OrderFragment : Fragment() {
     }
 
     private fun initClick() {
-        titleBar.rightOptionEvent = {
-            startActivity(Intent(activity, AddRoomActivity::class.java))
-        }
+//        titleBar.rightOptionEvent = {
+//            startActivity(Intent(activity, AddRoomActivity::class.java))
+//        }
     }
 
     override fun onResume() {
@@ -52,7 +52,7 @@ class OrderFragment : Fragment() {
         context?.let {
             titleBar.setTitleTextColor(ContextCompat.getColor(it, R.color.textColor))
         }
-        titleBar.setRightOptionText("添加餐厅")
+//        titleBar.setRightOptionText("添加餐厅")
         context?.let {
             titleBar.setBackGroundColor(ContextCompat.getColor(it, R.color.theme))
         }

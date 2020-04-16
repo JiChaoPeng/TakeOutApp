@@ -73,7 +73,7 @@ class ShoppingFragment : Fragment() {
         context?.let {
             titleBar.setTitleTextColor(ContextCompat.getColor(it, R.color.textColor))
         }
-        titleBar.setRightOptionText("添加餐厅")
+//        titleBar.setRightOptionText("添加餐厅")
         context?.let {
             titleBar.setBackGroundColor(ContextCompat.getColor(it, R.color.theme))
         }

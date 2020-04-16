@@ -7,7 +7,9 @@ class UserBean(
     var age: Int,
     var id: Int,
     var roomId: Int? = null,
-    var roomName: String? = null
+    var roomName: String? = null,
+    var number: Int? = null,
+    var address: String? = null
 )
 
 class UserListBean(var list: ArrayList<UserBean>)

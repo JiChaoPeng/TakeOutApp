@@ -35,7 +35,7 @@ open class RegisterActivity : BaseActivity() {
     }
 
     private fun initClick() {
-        uploadButton!!.setOnClickListener { v: View? ->
+        uploadButton.setOnClickListener { v: View? ->
             imageUrl = null
             val intent1 = Intent(Intent.ACTION_PICK)
             intent1.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")

@@ -109,25 +109,19 @@ class AddFoodActivity : BaseActivity() {
 
     private fun deleteFood() {
         val roomList = roomListBean
-        var x = 0
-        var y = 0
-        var z = 0
-        roomList?.list?.forEachIndexed { _, roomDetailModel ->
-            if (roomDetailModel.rId == foodDetail!!.roomId) {
-                roomDetailModel.list.forEachIndexed { _, food ->
-                    if (food.fId == foodDetail!!.fId) {
-                        roomList.list[x].list.removeAt(y)
-                        roomListBean = roomList
-
+        run breaking@{
+            roomList?.list?.forEachIndexed { index, roomDetailModel ->
+                if (roomDetailModel.rId == foodDetail!!.roomId) {
+                    roomDetailModel.list.forEachIndexed { index1, food ->
+                        if (food.fId == foodDetail!!.fId) {
+                            roomList.list[index].list.removeAt(index1)
+                            roomListBean = roomList
+                            return@breaking
+                        }
                     }
-                    y++
                 }
             }
-            x++
         }
-        x = 0
-        y = 0
-        z = 0
         val cache = cacheBean
         cache?.cache?.forEachIndexed { index, cacheBean ->
             if (cacheBean.name != getUser()!!.username) {
@@ -136,16 +130,13 @@ class AddFoodActivity : BaseActivity() {
                         if (roomDetailModel.rId == foodDetail!!.roomId) {
                             roomDetailModel.list.forEachIndexed { index2, food ->
                                 if (food.fId == foodDetail!!.fId) {
-                                    cache.cache[x].listModel.list[y].list.removeAt(z)
+                                    cache.cache[index].listModel.list[index1].list.removeAt(index2)
                                 }
-                                z++
                             }
                         }
-                        y++
                     }
                 }
             }
-            x++
         }
         cacheBean = cache
         finish()
