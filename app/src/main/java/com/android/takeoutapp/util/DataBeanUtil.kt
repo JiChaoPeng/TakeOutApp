@@ -47,14 +47,10 @@ class DataBeanUtil {
                 field = value
             }
             get() {
-                return if (field == null) {
-                    Gson().fromJson(
+                   return Gson().fromJson(
                         MMKV.defaultMMKV().decodeString(FormBeanKey),
                         FormBeanList::class.java
                     )
-                } else {
-                    field
-                }
             }
 
         var roomListBean: RoomListModel? = null
