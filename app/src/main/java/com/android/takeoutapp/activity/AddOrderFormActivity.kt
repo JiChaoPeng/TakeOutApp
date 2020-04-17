@@ -25,6 +25,7 @@ class AddOrderFormActivity : BaseActivity() {
     private val adapter: OrderFormAdapter = OrderFormAdapter()
     private val mealBeans: ArrayList<FoodDetailModel> = ArrayList()
     private var numBea: NumBea? = null
+    private var isTakeOut: Boolean = false
 
     companion object {
         private const val ROOMID = "ROOMID"
@@ -43,8 +44,17 @@ class AddOrderFormActivity : BaseActivity() {
         titleBar.leftOptionEvent = {
             finish()
         }
+        setIsTakeout(true)
+        waimai.onSingleClick {
+            setIsTakeout(true)
+        }
+        ziti.onSingleClick {
+            setIsTakeout(false)
+        }
         numBea = intent.getSerializableExtra(ROOMID) as? NumBea
         initView()
+        address.setText(getUser()?.address)
+
         commit.onSingleClick {
             val user = getUser()
             user?.let {
@@ -56,7 +66,9 @@ class AddOrderFormActivity : BaseActivity() {
                     allPrice,
                     numBea!!.roomAddress,
                     numBea!!.roomName,
-                    mealBeans
+                    mealBeans,
+                    isTakeOut,
+                    user.address, user.number
                 )
                 var formBeanList1 = formBeanList
                 if (formBeanList1 == null || formBeanList1.list.isEmpty()) {
@@ -79,10 +91,23 @@ class AddOrderFormActivity : BaseActivity() {
                     }
                 }
                 roomListBean = listBean
-
                 FormCommitActivity.newInstance(this, formBean)
                 finish()
             }
+        }
+    }
+
+    private fun setIsTakeout(bool: Boolean) {
+        if (bool) {
+            isTakeOut = true
+            waimai.setBackgroundColor(ContextCompat.getColor(this, R.color.theme))
+            ziti.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+            address.visibility = View.VISIBLE
+        } else {
+            isTakeOut = false
+            waimai.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+            ziti.setBackgroundColor(ContextCompat.getColor(this, R.color.theme))
+            address.visibility = View.GONE
         }
     }
 

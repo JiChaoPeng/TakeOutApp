@@ -9,7 +9,10 @@ import com.android.frameworktool.util.onSingleClick
 import com.android.newsapp.util.AlertCallBack
 import com.android.takeoutapp.R
 import com.android.takeoutapp.bean.UserBean
+import com.android.takeoutapp.model.CacheBean
+import com.android.takeoutapp.model.CacheListBean
 import com.android.takeoutapp.util.AlertUtil
+import com.android.takeoutapp.util.DataBeanUtil
 import com.android.takeoutapp.util.SqlUtil.Companion.getUser
 import com.android.takeoutapp.util.SqlUtil.Companion.setUser
 import com.bumptech.glide.Glide
@@ -35,7 +38,11 @@ class ManagerActivity : BaseActivity() {
         logOut.setOnClickListener {
             AlertUtil.showAlert(this, "退出", "确定退出当前账号？", object : AlertCallBack {
                 override fun neutralButton() {
+                    cache()
+                    DataBeanUtil.roomListBean = null
+                    DataBeanUtil.formBeanList = null
                     setUser(null)
+                    bean = null
                     startActivity(Intent(this@ManagerActivity,SplashActivityActivity::class.java))
                 }
 
@@ -44,6 +51,42 @@ class ManagerActivity : BaseActivity() {
         }
     }
 
+    private fun cache() {
+        if (DataBeanUtil.roomListBean != null && bean != null) {
+            var cacheBean1 = DataBeanUtil.cacheBean
+            if (cacheBean1 == null) {
+                cacheBean1 = CacheListBean(
+                    arrayListOf(
+                        CacheBean(
+                            DataBeanUtil.roomListBean!!,
+                            bean?.username,
+                            bean,
+                            DataBeanUtil.formBeanList
+                        )
+                    )
+                )
+                DataBeanUtil.cacheBean = cacheBean1
+            } else {
+                cacheBean1.cache.forEachIndexed { index, model ->
+                    if (model.name == bean!!.username) {
+                        cacheBean1.cache[index].user = bean
+                        cacheBean1.cache[index].listModel = DataBeanUtil.roomListBean!!
+                        DataBeanUtil.cacheBean = cacheBean1
+                        return
+                    }
+                }
+                cacheBean1.cache.add(
+                    CacheBean(
+                        DataBeanUtil.roomListBean!!, bean!!.username,
+                        bean,
+                        DataBeanUtil.formBeanList
+                    )
+                )
+                DataBeanUtil.cacheBean = cacheBean1
+                return
+            }
+        }
+    }
     override fun onResume() {
         super.onResume()
         initData()

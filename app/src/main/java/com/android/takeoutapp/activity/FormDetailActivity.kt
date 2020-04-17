@@ -12,6 +12,8 @@ import com.android.takeoutapp.bean.FormBean
 import com.android.takeoutapp.model.FoodDetailModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_form_detail.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FormDetailActivity : BaseActivity() {
     private val adapter = FormDetailAdapter()
@@ -44,7 +46,7 @@ class FormDetailActivity : BaseActivity() {
         titleBar.leftOptionEvent = {
             finish()
         }
-        if (formBean==null){
+        if (formBean == null) {
             finish()
         }
         recyclerView.adapter = adapter
@@ -53,5 +55,13 @@ class FormDetailActivity : BaseActivity() {
         recyclerView.layoutManager = layout
         adapter.modelList.clear()
         adapter.modelList.addAll(formBean!!.foodList)
+        val currentDateTimeString =
+            SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.CHINA)
+                .format(Date(formBean.time))
+        name.text =
+            "下单账号 ：" + formBean!!.username
+        num.text="联系方式 ：${formBean.number}"
+        time.text = "下单时间：$currentDateTimeString"
+        address.text = "下单地址：${formBean.userAddress}"
     }
 }

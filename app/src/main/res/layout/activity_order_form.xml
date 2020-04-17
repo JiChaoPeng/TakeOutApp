@@ -23,11 +23,11 @@
 
             <TextView
                 android:id="@+id/name"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:textSize="18sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -40,32 +40,68 @@
         </RelativeLayout>
     </ScrollView>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/commitLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/garyEE">
+        android:background="@color/garyEE"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/price"
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="30dp"
-            android:textColor="@color/text_black"
-            android:textSize="16sp" />
+            android:layout_height="50dp">
 
-        <Button
-            android:id="@+id/commit"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/shape_login_button"
-            android:text=" 提交订单 "
-            android:textColor="@color/white" />
+            <Button
+                android:id="@+id/ziti"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:background="@color/white"
+                android:text="自提" />
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/waimai"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="25dp"
+                android:background="@color/white"
+                android:text="外卖" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/commit"
+                android:layout_centerVertical="true"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/shape_login_button"
+                android:text=" 提交订单 "
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+    </LinearLayout>
 </RelativeLayout>

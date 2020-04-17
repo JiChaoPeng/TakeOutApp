@@ -8,7 +8,7 @@ class UserBean(
     var id: Int,
     var roomId: Int? = null,
     var roomName: String? = null,
-    var number: Int? = null,
+    var number: Long? = null,
     var address: String? = null
 )
 

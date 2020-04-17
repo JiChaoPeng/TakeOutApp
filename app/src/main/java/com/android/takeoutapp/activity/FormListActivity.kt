@@ -77,7 +77,9 @@ class FormListActivity : BaseActivity() {
             empty.visibility = View.GONE
         }
         adapter.viewHolderConfig.itemClickListener = {
-
+            if (it is FormBean){
+                FormDetailActivity.newInstance(this,it)
+            }
         }
     }
 }

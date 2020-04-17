@@ -49,6 +49,12 @@ open class RegisterActivity : BaseActivity() {
             Toast.makeText(this, "账号不能为空", Toast.LENGTH_SHORT).show()
         } else if (loginPassword.text == null || TextUtils.isEmpty(loginPassword.text)) {
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show()
+        }  else if (loginAddress.text == null || TextUtils.isEmpty(loginAddress.text)) {
+            Toast.makeText(this, "地址不能为空", Toast.LENGTH_SHORT).show()
+        }  else if (loginNumber.text == null || TextUtils.isEmpty(loginNumber.text)) {
+            Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show()
+        }  else if (loginNumber.text.toString().length!=11||!loginNumber.text.toString().startsWith("1")) {
+            Toast.makeText(this, "手机号格式不正确", Toast.LENGTH_SHORT).show()
         } else if (imageUrl == null) {
             Toast.makeText(this, "请上传头像！", Toast.LENGTH_SHORT).show()
         } else {
@@ -63,7 +69,9 @@ open class RegisterActivity : BaseActivity() {
                 loginPassword.text.toString(),
                 imageUrl!!,
                 25,
-                0
+                0,null,null,
+                loginNumber.text.toString().toLong(),
+                loginAddress.text.toString()
             )
         )
         if (registerUser) {

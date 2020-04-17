@@ -11,9 +11,13 @@ class FormDetailHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
         super.config(model)
         if (model is FoodDetailModel){
             itemView.foodName.text = model.foodname
-            model.imagePath?.let {
+
+            if (model.imagePath != null) {
                 loadImage(itemView.imageView, model.imagePath!!)
+            } else {
+                itemView.imageView.setImageResource(model.image)
             }
+
             val num: Int =model.num
             itemView. foodNum.text = "x️$num"
             itemView.foodPrice.text = "￥ " + num * model.price

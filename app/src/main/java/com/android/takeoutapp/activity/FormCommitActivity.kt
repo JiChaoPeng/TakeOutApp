@@ -43,5 +43,9 @@ class FormCommitActivity : BaseActivity() {
         form.onSingleClick {
             startActivity(Intent(this,FormListActivity::class.java))
         }
+        if (model?.isTakeout==true){
+            textView.text = "下单成功，订单将由商家配送，请保持手机畅通"
+            address.text = "配送地址 ： ${model.userAddress}"
+        }
     }
 }

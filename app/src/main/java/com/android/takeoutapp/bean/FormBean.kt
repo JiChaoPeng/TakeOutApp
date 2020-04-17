@@ -14,7 +14,10 @@ class FormBean(
     var price: Int,
     var address: String,
     var roomName: String,
-    var foodList: ArrayList<FoodDetailModel>
+    var foodList: ArrayList<FoodDetailModel>,
+    var isTakeout:Boolean=false,
+    var userAddress: String?=null,
+    var number: Long?=null
 ) : Serializable
 
 class FormBeanList(

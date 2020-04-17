@@ -126,11 +126,14 @@ class AddFoodActivity : BaseActivity() {
         cache?.cache?.forEachIndexed { index, cacheBean ->
             if (cacheBean.name != getUser()!!.username) {
                 cacheBean.listModel.list.let { room ->
-                    room.forEachIndexed { index1, roomDetailModel ->
-                        if (roomDetailModel.rId == foodDetail!!.roomId) {
-                            roomDetailModel.list.forEachIndexed { index2, food ->
-                                if (food.fId == foodDetail!!.fId) {
-                                    cache.cache[index].listModel.list[index1].list.removeAt(index2)
+                    run breaking@{
+                        room.forEachIndexed { index1, roomDetailModel ->
+                            if (roomDetailModel.rId == foodDetail!!.roomId) {
+                                roomDetailModel.list.forEachIndexed { index2, food ->
+                                    if (food.fId == foodDetail!!.fId) {
+                                        cache.cache[index].listModel.list[index1].list.removeAt(index2)
+                                        return@breaking
+                                    }
                                 }
                             }
                         }
