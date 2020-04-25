@@ -43,7 +43,7 @@ class ManagerActivity : BaseActivity() {
                     DataBeanUtil.formBeanList = null
                     setUser(null)
                     bean = null
-                    startActivity(Intent(this@ManagerActivity,SplashActivityActivity::class.java))
+                    startActivity(Intent(this@ManagerActivity, SplashActivityActivity::class.java))
                 }
 
                 override fun negativeButton() {}
@@ -87,6 +87,7 @@ class ManagerActivity : BaseActivity() {
             }
         }
     }
+
     override fun onResume() {
         super.onResume()
         initData()
@@ -103,6 +104,7 @@ class ManagerActivity : BaseActivity() {
     }
 
     private fun initView() {
+        information.visibility = View.GONE
         val mRequestOptions = RequestOptions.circleCropTransform()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
         if (bean?.image == null) {

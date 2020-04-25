@@ -48,6 +48,22 @@ class SqlUtil {
             }
         }
 
+        fun removeRegister(name: String): Boolean {
+            val registerUser = getRegisterUser()
+            if (registerUser == null || registerUser.list.size == 0) {
+                return false
+            } else {
+                registerUser.list.forEachIndexed { index, userBean ->
+                    if (name == userBean.username) {
+                        registerUser.list.removeAt(index)
+                        MMKV.defaultMMKV().encode(RegisterUserKey, Gson().toJson(registerUser))
+                        return false
+                    }
+                }
+                return false
+            }
+        }
+
         fun getRegisterUser(): UserListBean? {
             val decodeString = MMKV.defaultMMKV().decodeString(RegisterUserKey)
             return Gson().fromJson<UserListBean>(decodeString, UserListBean::class.java)

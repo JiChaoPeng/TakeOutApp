@@ -49,6 +49,9 @@ class MineFragment : Fragment() {
         form.onSingleClick {
             FormListActivity.newInstance(activity)
         }
+        information.onSingleClick {
+            RegisterActivity.newInstance(context,false)
+        }
         logOut.setOnClickListener {
             AlertUtil.showAlert(activity, "退出", "确定退出当前账号？", object : AlertCallBack {
                 override fun neutralButton() {

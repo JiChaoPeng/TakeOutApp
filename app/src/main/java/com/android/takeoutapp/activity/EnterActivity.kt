@@ -29,7 +29,7 @@ class EnterActivity : BaseActivity() {
             finish()
         }
         titleBar.rightOptionEvent = {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            RegisterActivity.newInstance(this,true)
         }
         titleBar.setRightOptionImageVisible(visible = true)
         titleBar.setRightOptionText("注册", ContextCompat.getColor(this, R.color.textColor))
