@@ -314,7 +314,7 @@ class DataBeanUtil {
                 "河北省唐山市曹妃甸区唐海镇海丰里453号",
                 3,
                 "本店提供各种家常炒菜",
-                R.mipmap.huang,
+                R.mipmap.kang,
                 4,
                 1,
                 list
