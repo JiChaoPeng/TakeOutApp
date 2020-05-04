@@ -16,7 +16,6 @@ import com.android.takeoutapp.activity.*
 import com.android.takeoutapp.bean.UserBean
 import com.android.takeoutapp.model.CacheBean
 import com.android.takeoutapp.model.CacheListBean
-import com.android.takeoutapp.util.DataBeanUtil
 import com.android.takeoutapp.util.DataBeanUtil.Companion.cacheBean
 import com.android.takeoutapp.util.DataBeanUtil.Companion.formBeanList
 import com.android.takeoutapp.util.DataBeanUtil.Companion.roomListBean
@@ -81,7 +80,7 @@ class MineFragment : Fragment() {
         bean = null
         name!!.text = ""
         initData()
-        startActivity(Intent(activity, SplashActivityActivity::class.java))
+        startActivity(Intent(activity, SplashActivity::class.java))
     }
 
     private fun cache() {

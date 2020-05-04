@@ -43,7 +43,7 @@ class ManagerActivity : BaseActivity() {
                     DataBeanUtil.formBeanList = null
                     setUser(null)
                     bean = null
-                    startActivity(Intent(this@ManagerActivity, SplashActivityActivity::class.java))
+                    startActivity(Intent(this@ManagerActivity, SplashActivity::class.java))
                 }
 
                 override fun negativeButton() {}

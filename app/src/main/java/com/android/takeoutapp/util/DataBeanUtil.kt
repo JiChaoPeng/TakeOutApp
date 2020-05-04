@@ -14,12 +14,21 @@ class DataBeanUtil {
 
         private const val MDLRoomId = 0
         private const val MwskRoomId = 1
+        private const val HuangRoomId = 2
+        private const val KangRoomId = 3
+        private const val ShiRoomId = 4
+        private const val WaRoomId = 5
         fun setLocalBean() {
             val decode = MMKV.defaultMMKV().decodeString(LocalBean)
             if (decode == null) {
                 val list = arrayListOf<RoomDetailModel>()
                 list.add(getMdlModel())
                 list.add(getMuskModel())
+                list.add(getKangModel())
+                list.add(getHuangModel())
+                list.add(getShiModel())
+                list.add(getWaModel())
+
                 MMKV.defaultMMKV().encode("LocalBean", Gson().toJson(RoomListModel(list)))
             }
         }
@@ -47,10 +56,10 @@ class DataBeanUtil {
                 field = value
             }
             get() {
-                   return Gson().fromJson(
-                        MMKV.defaultMMKV().decodeString(FormBeanKey),
-                        FormBeanList::class.java
-                    )
+                return Gson().fromJson(
+                    MMKV.defaultMMKV().decodeString(FormBeanKey),
+                    FormBeanList::class.java
+                )
             }
 
         var roomListBean: RoomListModel? = null
@@ -96,6 +105,221 @@ class DataBeanUtil {
                     field
                 }
             }
+
+        private fun getHuangModel(): RoomDetailModel {
+            val list = arrayListOf<FoodDetailModel>()
+            list.add(
+                FoodDetailModel(
+                    "黄焖鸡米饭（不含米饭）",
+                    20,
+                    18,
+                    R.mipmap.huang0,
+                    "取黄焖鸡一份，香米饭一份，将米饭直接扣入鸡锅内，搅拌均匀食之，会有不一样的味觉冲击（约7两）",
+                    HuangRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "黄焖排骨",
+                    21,
+                    28,
+                    R.mipmap.huang1,
+                    "猪排骨为主料，不含米饭（约7两）",
+                    HuangRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "传统米线",
+                    22,
+                    16,
+                    R.mipmap.huang2,
+                    "素菜全带，荤菜任选一种，请在备注中标明（鸡丸，鱼丸，鱼豆腐，墨鱼丸，鹌鹑蛋，虾丸，肥牛，肥羊）",
+                    HuangRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "米饭",
+                    23,
+                    2,
+                    R.mipmap.huang3,
+                    "米饭约300克",
+                    HuangRoomId
+                )
+            )
+            return RoomDetailModel(
+                "正宗米线黄焖鸡",
+                "222",
+                HuangRoomId,
+                "河北省唐山市曹妃甸区汇丰路世纪名苑底商",
+                3,
+                "本店有黄焖鸡或排骨以及米线和配菜（米线可与面条双拼，请在备注中标明）",
+                R.mipmap.huang,
+                4,
+                1,
+                list
+            )
+        }
+
+        private fun getWaModel(): RoomDetailModel {
+            val list = arrayListOf<FoodDetailModel>()
+            list.add(
+                FoodDetailModel(
+                    "特色虾恋蛙",
+                    50,
+                    158,
+                    R.mipmap.wa0,
+                    "此品鲜香麻辣，主料牛蛙和小龙虾",
+                    WaRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "秘制羊蝎子",
+                    51,
+                    98,
+                    R.mipmap.wa1,
+                    "主要食材羊大梁，可挑选清汤，微辣，麻辣，请在备注说明",
+                    WaRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "特色火锅鸡",
+                    52,
+                    68,
+                    R.mipmap.wa2,
+                    "可选微辣，麻辣（推荐麻辣），约750克",
+                    WaRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "香辣牛板筋",
+                    53,
+                    33,
+                    R.mipmap.wa3,
+                    "主料牛板筋，约150克",
+                    WaRoomId
+                )
+            )
+            return RoomDetailModel(
+                "虾恋蛙主题餐厅",
+                "555",
+                WaRoomId,
+                "河北省唐山市曹妃甸区龙港景苑小区68号底商",
+                3,
+                "本店有各种肉锅（虾恋蛙，羊蝎子，火锅鸡等）",
+                R.mipmap.wa,
+                4,
+                1,
+                list
+            )
+        }
+
+        private fun getShiModel(): RoomDetailModel {
+            val list = arrayListOf<FoodDetailModel>()
+            list.add(
+                FoodDetailModel(
+                    "鸡翅煲",
+                    40,
+                    99,
+                    R.mipmap.shi0,
+                    "主料有鸡翅；辅料有年糕，玉米，藕片，凤爪，南美虾，土豆",
+                    ShiRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "猪手煲",
+                    41,
+                    69,
+                    R.mipmap.shi1,
+                    "主料有猪蹄；辅料有年糕，玉米，藕片，凤爪，南美虾，土豆",
+                    ShiRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "明虾煲",
+                    42,
+                    169,
+                    R.mipmap.shi2,
+                    "主料有南美虾；辅料有年糕，玉米，藕片，凤爪，南美虾，土豆",
+                    ShiRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "牛蛙煲",
+                    43,
+                    129,
+                    R.mipmap.shi3,
+                    "主料有南美虾；辅料有年糕，玉米，藕片，凤爪，南美虾，土豆",
+                    ShiRoomId
+                )
+            )
+            return RoomDetailModel(
+                "石小胖肉蟹煲",
+                "444",
+                ShiRoomId,
+                "河北省唐山市曹妃甸区唐海镇新城大街167号",
+                3,
+                "店内有各种口味肉蟹煲",
+                R.mipmap.shi,
+                4,
+                1,
+                list
+            )
+        }
+
+        private fun getKangModel(): RoomDetailModel {
+            val list = arrayListOf<FoodDetailModel>()
+            list.add(
+                FoodDetailModel(
+                    "毛血旺",
+                    30,
+                    48,
+                    R.mipmap.kang0,
+                    "主要原料有鸭血，黄豆芽，鳝鱼，猪肉，毛肚，黄花菜，鱿鱼，午餐肉",
+                    KangRoomId
+                )
+            )
+            list.add(FoodDetailModel("水煮肉片", 31, 38, R.mipmap.kang1, "精选猪肉圆白菜 麻辣具在", KangRoomId))
+            list.add(
+                FoodDetailModel(
+                    "干煸四季豆",
+                    32,
+                    32,
+                    R.mipmap.kang2,
+                    "主要原料为豆角，可微辣或麻辣",
+                    KangRoomId
+                )
+            )
+            list.add(
+                FoodDetailModel(
+                    "肥肠炖豆腐",
+                    33,
+                    38,
+                    R.mipmap.kang3,
+                    "主料为猪肠，豆腐，酸菜，白菜，鸭血",
+                    KangRoomId
+                )
+            )
+            return RoomDetailModel(
+                "康庄餐厅",
+                "333",
+                KangRoomId,
+                "河北省唐山市曹妃甸区唐海镇海丰里453号",
+                3,
+                "本店提供各种家常炒菜",
+                R.mipmap.huang,
+                4,
+                1,
+                list
+            )
+        }
 
         private fun getMuskModel(): RoomDetailModel {
             val list = arrayListOf<FoodDetailModel>()

@@ -3,7 +3,6 @@ package com.android.takeoutapp.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -13,9 +12,9 @@ import com.android.takeoutapp.R
 import com.android.takeoutapp.util.SqlUtil
 import com.tencent.mmkv.MMKV
 
-class SplashActivityActivity : BaseActivity() {
+class SplashActivity : BaseActivity() {
     override fun getContentView(): Int {
-        return R.layout.activity_splash_activity
+        return R.layout.activity_splash
     }
 
     override fun onResume() {
